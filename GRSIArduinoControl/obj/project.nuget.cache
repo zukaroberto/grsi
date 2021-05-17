@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PS2tOjyQ7izLIK1G17B2N0BPVlV069xaQHbl8eic8AouS61toa3vkP3mMmJxhnRe9UgPw+F6ieVNiJ7BqAiz0A==",
+  "dgSpecHash": "Nu02kmjXakaI2znuVhrBo0NUc5BA7rEFbdMTLjihW4MORX81AuPc+Qx7P2feY6vyxdQvURescw1Z6kZhKvRxGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\duart\\source\\repos\\GRSIArduinoControl\\GRSIArduinoControl.csproj",
+  "projectFilePath": "C:\\GRSI\\GRSIArduinoControl\\GRSIArduinoControl.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\duart\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\duart\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",

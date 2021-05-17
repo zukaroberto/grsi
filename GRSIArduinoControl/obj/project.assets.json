@@ -438,11 +438,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duart\\source\\repos\\GRSIArduinoControl\\GRSIArduinoControl.csproj",
+      "projectUniqueName": "C:\\GRSI\\GRSIArduinoControl\\GRSIArduinoControl.csproj",
       "projectName": "GRSIArduinoControl",
-      "projectPath": "C:\\Users\\duart\\source\\repos\\GRSIArduinoControl\\GRSIArduinoControl.csproj",
+      "projectPath": "C:\\GRSI\\GRSIArduinoControl\\GRSIArduinoControl.csproj",
       "packagesPath": "C:\\Users\\duart\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duart\\source\\repos\\GRSIArduinoControl\\obj\\",
+      "outputPath": "C:\\GRSI\\GRSIArduinoControl\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\duart\\AppData\\Roaming\\NuGet\\NuGet.Config",
