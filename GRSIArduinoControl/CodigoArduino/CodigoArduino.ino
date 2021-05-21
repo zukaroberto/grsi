@@ -1,3 +1,7 @@
+#include <Adafruit_BME280.h>
+#include <Adafruit_BMP280.h>
+
+
 #define intervalo 500
 #define pot A0
 #define ledVerde 2
@@ -7,10 +11,24 @@
 
 int leituraPOT=0;
 int contador = 0;
+unsigned long oldTime=0;
+unsigned long newTime=0;
 
+Adafruit_BME280 bmp; //instanciar a classe Adafruit_BMP280;
 
 void setup() {
   Serial.begin(9600);
+  if(bmp.begin()){
+    Serial.println("Sensor OK!");
+  }
+  else{
+    Serial.println("Erro no sensor...");
+    while(true){
+      
+    }
+  }
+  delay(1000);
+  
   //declarar os pinos 2,3 e 3 como saídas
   pinMode(ledVerde,OUTPUT);
   pinMode(ledAmarelo,OUTPUT);
@@ -61,7 +79,7 @@ void loop() {
     Serial.println(digitalRead(ledVerde));
   }
   
-  //pedido de inicalização
+  //pedido de inicialização
   if (input == "I") {
     int statusRed = digitalRead(ledVermelho);
     int statusYellow = digitalRead(ledAmarelo);
@@ -69,6 +87,26 @@ void loop() {
     String init = (String)statusRed + ";" + (String)statusYellow + ";" + (String)statusGreen;
     Serial.println(init);
   }
+  
+  
+
+  newTime=millis();
+
+  
+
+  if(newTime - oldTime >= 200){
+    oldTime=newTime;
+    float temp = bmp.readTemperature();
+    float pres = bmp.readPressure()/100;
+    String dados = (String)temp + ";" + (String)pres;
+    Serial.println(dados);
+  }
+
+  
+  
+ 
+
+  
 
 }
 

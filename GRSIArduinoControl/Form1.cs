@@ -144,7 +144,7 @@ namespace GRSIArduinoControl
                     }
                     else
                     {
-                        throw new FormException();
+                        flag = false;
                     }
                 }
                 catch (OperationCanceledException)
