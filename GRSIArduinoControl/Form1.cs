@@ -12,6 +12,8 @@ namespace GRSIArduinoControl
         private SerialPort port = new SerialPort();
         private int inData;
         private string flagLED;
+        private string initData;
+        
 
         public Form1()
         {
@@ -119,7 +121,7 @@ namespace GRSIArduinoControl
             port.Open();
             btnTerminar.Enabled = true;
             btnIniciar.Enabled = false;
-            //port.Write("I");
+            port.Write("I");
         }
 
         public void port_SerialDataReceivedEvent (object sender, SerialDataReceivedEventArgs e)
@@ -129,9 +131,21 @@ namespace GRSIArduinoControl
             {
                 try
                 {
-                    //converte para int o caracter que chega (0 ou 1)
-                    inData = Int16.Parse(port.ReadLine());
-                    this.Invoke(new EventHandler(displayData));
+                    initData = port.ReadLine();
+                    if (initData.Length == 6)
+                    {
+                        this.Invoke(new EventHandler(displayData2));
+                    }
+                    else if (initData.Length == 2)
+                    {
+                        //converte para int o caracter que chega (0 ou 1)
+                        inData = Int16.Parse(initData);
+                        this.Invoke(new EventHandler(displayData));
+                    }
+                    else
+                    {
+                        throw new FormException();
+                    }
                 }
                 catch (OperationCanceledException)
                 {
@@ -141,10 +155,64 @@ namespace GRSIArduinoControl
                 {
                     flag = true;
                 }
+                catch (FormException)
+                {
+                    if (!showException("Erro de leitura de dados! \n Tentar de novo?\n"))
+                    {
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        flag = true;
+                    }
+                }
             } while (flag == false);
             
         }
 
+        public void displayData2(object sender, EventArgs e)
+        {
+            
+            string[] splitedString = initData.Split(";");
+            int[] arr = new int[3];
+
+            for(int i=0; i<splitedString.Length;i++)
+            {
+                arr[i] = Convert.ToInt32(splitedString[i]);
+            }
+
+            if (arr[0] == 0)
+            {
+                tbLEDRed.BackColor = Color.Red;
+                tbLEDRed.Text = "DESLIGADO";
+            }
+            if (arr[0] == 1)
+            {
+                tbLEDRed.BackColor = Color.Green;
+                tbLEDRed.Text = "LIGADO";
+            }
+            if (arr[1] == 0)
+            {
+                tbLEDYellow.BackColor = Color.Red;
+                tbLEDYellow.Text = "DESLIGADO";
+            }
+            if (arr[1] == 1)
+            {
+                tbLEDYellow.BackColor = Color.Green;
+                tbLEDYellow.Text = "LIGADO";
+            }
+            if (arr[2] == 0)
+            {
+                tbLEDGreen.BackColor = Color.Red;
+                tbLEDGreen.Text = "DESLIGADO";
+            }
+            if (arr[2] == 1)
+            {
+                tbLEDGreen.BackColor = Color.Green;
+                tbLEDGreen.Text = "LIGADO";
+            }
+
+        }
         public void displayData(object sender, EventArgs e)
         {
             //tbLEDRed.Clear();

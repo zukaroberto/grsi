@@ -7,8 +7,7 @@
 
 int leituraPOT=0;
 int contador = 0;
-unsigned long newTime=0;
-unsigned long oldTime=0;
+
 
 void setup() {
   Serial.begin(9600);
@@ -62,22 +61,15 @@ void loop() {
     Serial.println(digitalRead(ledVerde));
   }
   
-  //pedidos de inicalização
+  //pedido de inicalização
   if (input == "I") {
-    Serial.println(digitalRead(ledVermelho));
+    int statusRed = digitalRead(ledVermelho);
+    int statusYellow = digitalRead(ledAmarelo);
+    int statusGreen = digitalRead(ledVerde);
+    String init = (String)statusRed + ";" + (String)statusYellow + ";" + (String)statusGreen;
+    Serial.println(init);
   }
-  if (input == "J") {
-    Serial.println(digitalRead(ledAmarelo));
-  }
-  if (input == "K") {
-    Serial.println(digitalRead(ledVerde));
-  }
-  //novo
-  newTime = millis();
-  if(newTime - oldTime >=500){
-    oldTime = newTime;
-    Serial.println(digitalRead(ledVermelho));   
-  }
+
 }
 
 void teste(){

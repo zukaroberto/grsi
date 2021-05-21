@@ -46,6 +46,7 @@ namespace GRSIArduinoControl
             this.btnOFFGreen = new System.Windows.Forms.Button();
             this.btnONGreen = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbDados = new System.Windows.Forms.TextBox();
             this.tbLEDGreen = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -212,13 +213,20 @@ namespace GRSIArduinoControl
             this.label4.TabIndex = 15;
             this.label4.Text = "LED Verde";
             // 
+            // tbDados
+            // 
+            this.tbDados.Location = new System.Drawing.Point(288, 117);
+            this.tbDados.Name = "tbDados";
+            this.tbDados.Size = new System.Drawing.Size(100, 23);
+            this.tbDados.TabIndex = 18;
+            // 
             // tbLEDGreen
             // 
             this.tbLEDGreen.ForeColor = System.Drawing.SystemColors.Window;
-            this.tbLEDGreen.Location = new System.Drawing.Point(61, 351);
+            this.tbLEDGreen.Location = new System.Drawing.Point(59, 352);
             this.tbLEDGreen.Name = "tbLEDGreen";
-            this.tbLEDGreen.Size = new System.Drawing.Size(80, 23);
-            this.tbLEDGreen.TabIndex = 14;
+            this.tbLEDGreen.Size = new System.Drawing.Size(82, 23);
+            this.tbLEDGreen.TabIndex = 19;
             this.tbLEDGreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
@@ -226,10 +234,11 @@ namespace GRSIArduinoControl
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1010, 486);
+            this.Controls.Add(this.tbLEDGreen);
+            this.Controls.Add(this.tbDados);
             this.Controls.Add(this.btnOFFGreen);
             this.Controls.Add(this.btnONGreen);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tbLEDGreen);
             this.Controls.Add(this.btnOFFYellow);
             this.Controls.Add(this.btnONYellow);
             this.Controls.Add(this.label3);
@@ -270,6 +279,7 @@ namespace GRSIArduinoControl
         private System.Windows.Forms.Button btnOFFGreen;
         private System.Windows.Forms.Button btnONGreen;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbDados;
         private System.Windows.Forms.TextBox tbLEDGreen;
     }
 }
