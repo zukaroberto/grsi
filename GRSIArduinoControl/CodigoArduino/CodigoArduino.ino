@@ -1,6 +1,4 @@
 #include <Adafruit_BME280.h>
-#include <Adafruit_BMP280.h>
-
 
 #define intervalo 500
 #define pot A0
@@ -52,31 +50,31 @@ void loop() {
   //comandos LED vermelho
   if(input == "L"){
     digitalWrite(ledVermelho, HIGH);
-    Serial.println(digitalRead(ledVermelho));
+    Serial.println("E;" + (String)digitalRead(ledVermelho));
   }
   if (input == "D") {
     digitalWrite(ledVermelho, LOW);
-    Serial.println(digitalRead(ledVermelho));
+    Serial.println("E;" + (String)digitalRead(ledVermelho));
   }
 
   //comandos LED amarelo
   if(input == "A"){
     digitalWrite(ledAmarelo, HIGH);
-    Serial.println(digitalRead(ledAmarelo));
+    Serial.println("E;" + (String)digitalRead(ledAmarelo));
   }
   if (input == "B") {
     digitalWrite(ledAmarelo, LOW);
-    Serial.println(digitalRead(ledAmarelo));
+    Serial.println("E;" + (String)digitalRead(ledAmarelo));
   }
 
   //comandos LED verde
   if(input == "C"){
     digitalWrite(ledVerde, HIGH);
-    Serial.println(digitalRead(ledVerde));
+    Serial.println("E;" + (String)digitalRead(ledVerde));
   }
   if (input == "E") {
     digitalWrite(ledVerde, LOW);
-    Serial.println(digitalRead(ledVerde));
+    Serial.println("E;" + (String)digitalRead(ledVerde));
   }
   
   //pedido de inicialização
@@ -84,7 +82,7 @@ void loop() {
     int statusRed = digitalRead(ledVermelho);
     int statusYellow = digitalRead(ledAmarelo);
     int statusGreen = digitalRead(ledVerde);
-    String init = (String)statusRed + ";" + (String)statusYellow + ";" + (String)statusGreen;
+    String init = "I;" + (String)statusRed + ";" + (String)statusYellow + ";" + (String)statusGreen;
     Serial.println(init);
   }
   
@@ -98,7 +96,7 @@ void loop() {
     oldTime=newTime;
     float temp = bmp.readTemperature();
     float pres = bmp.readPressure()/100;
-    String dados = (String)temp + ";" + (String)pres;
+    String dados = "S;" + (String)temp + ";" + (String)pres;
     Serial.println(dados);
   }
 
