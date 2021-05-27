@@ -16,17 +16,7 @@ Adafruit_BME280 bmp; //instanciar a classe Adafruit_BMP280;
 
 void setup() {
   Serial.begin(9600);
-  if(bmp.begin()){
-    Serial.println("Sensor OK!");
-  }
-  else{
-    Serial.println("Erro no sensor...");
-    while(true){
-      
-    }
-  }
-  delay(1000);
-  
+  bmp.begin();
   //declarar os pinos 2,3 e 3 como saídas
   pinMode(ledVerde,OUTPUT);
   pinMode(ledAmarelo,OUTPUT);
@@ -86,12 +76,7 @@ void loop() {
     Serial.println(init);
   }
   
-  
-
   newTime=millis();
-
-  
-
   if(newTime - oldTime >= 200){
     oldTime=newTime;
     float temp = bmp.readTemperature();
