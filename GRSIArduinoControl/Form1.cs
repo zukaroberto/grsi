@@ -13,7 +13,9 @@ namespace GRSIArduinoControl
         private int inData;
         private string flagLED;
         private string initData;
-        
+        private string[] splitedString;
+
+
 
         public Form1()
         {
@@ -132,20 +134,7 @@ namespace GRSIArduinoControl
                 try
                 {
                     initData = port.ReadLine();
-                    if (initData.Length == 6)
-                    {
-                        this.Invoke(new EventHandler(displayData2));
-                    }
-                    else if (initData.Length == 2)
-                    {
-                        //converte para int o caracter que chega (0 ou 1)
-                        inData = Int16.Parse(initData);
-                        this.Invoke(new EventHandler(displayData));
-                    }
-                    else
-                    {
-                        flag = false;
-                    }
+                    this.Invoke(new EventHandler(displayData2));
                 }
                 catch (OperationCanceledException)
                 {
@@ -172,44 +161,101 @@ namespace GRSIArduinoControl
 
         public void displayData2(object sender, EventArgs e)
         {
-            
-            string[] splitedString = initData.Split(";");
-            int[] arr = new int[3];
+            try
+            {
+                splitedString = initData.Split(";");
+                if (splitedString[0] == "I")
+                {
+                    //verifica posição 1 para o LED vermelho
+                    if (splitedString[1] == "0")
+                    {
+                        tbLEDRed.BackColor = Color.Red;
+                        tbLEDRed.Text = "DESLIGADO";
+                    }
+                    if (splitedString[1] == "1")
+                    {
+                        tbLEDRed.BackColor = Color.Green;
+                        tbLEDRed.Text = "LIGADO";
+                    }
+                    //verifica posição 2 para o LED amarelo
+                    if (splitedString[2] == "0")
+                    {
+                        tbLEDYellow.BackColor = Color.Red;
+                        tbLEDYellow.Text = "DESLIGADO";
+                    }
+                    if (splitedString[2] == "1")
+                    {
+                        tbLEDYellow.BackColor = Color.Green;
+                        tbLEDYellow.Text = "LIGADO";
+                    }
+                    //verifica posição 3 para o LED verde
+                    if (Convert.ToInt16(splitedString[3]) == 0)
+                    {
+                        tbLEDGreen.BackColor = Color.Red;
+                        tbLEDGreen.Text = "DESLIGADO";
+                    }
+                    if (Convert.ToInt16(splitedString[3]) == 1)
+                    {
+                        tbLEDGreen.BackColor = Color.Green;
+                        tbLEDGreen.Text = "LIGADO";
+                    }
+                }
+                else if (splitedString[0] == "E")
+                {
+                    if (Convert.ToInt16(splitedString[1]) == 0)
+                    {
+                        switch (flagLED)
+                        {
+                            case "red":
+                                tbLEDRed.BackColor = Color.Red;
+                                tbLEDRed.Text = "DESLIGADO";
+                                break;
+                            case "yellow":
+                                tbLEDYellow.BackColor = Color.Red;
+                                tbLEDYellow.Text = "DESLIGADO";
+                                break;
+                            case "green":
+                                tbLEDGreen.BackColor = Color.Red;
+                                tbLEDGreen.Text = "DESLIGADO";
+                                break;
+                        }
 
-            for(int i=0; i<splitedString.Length;i++)
-            {
-                arr[i] = Convert.ToInt32(splitedString[i]);
-            }
+                    }
+                    if (Convert.ToInt16(splitedString[1]) == 1)
+                    {
+                        switch (flagLED)
+                        {
+                            case "red":
+                                tbLEDRed.BackColor = Color.Green;
+                                tbLEDRed.Text = "LIGADO";
+                                break;
+                            case "yellow":
+                                tbLEDYellow.BackColor = Color.Green;
+                                tbLEDYellow.Text = "LIGADO";
+                                break;
+                            case "green":
+                                tbLEDGreen.BackColor = Color.Green;
+                                tbLEDGreen.Text = "LIGADO";
+                                break;
+                        }
+                    }
+                    flagLED = "";
+                }
+                else if (splitedString[0] == "S")
+                {
+                    tbPres.Text = "";
+                    tbTemp.Text = "";
+                    tbTemp.Text = splitedString[1];
+                    tbPres.Text = splitedString[2];
+                }
+                else
+                {
 
-            if (arr[0] == 0)
-            {
-                tbLEDRed.BackColor = Color.Red;
-                tbLEDRed.Text = "DESLIGADO";
+                }
             }
-            if (arr[0] == 1)
+            catch (IndexOutOfRangeException)
             {
-                tbLEDRed.BackColor = Color.Green;
-                tbLEDRed.Text = "LIGADO";
-            }
-            if (arr[1] == 0)
-            {
-                tbLEDYellow.BackColor = Color.Red;
-                tbLEDYellow.Text = "DESLIGADO";
-            }
-            if (arr[1] == 1)
-            {
-                tbLEDYellow.BackColor = Color.Green;
-                tbLEDYellow.Text = "LIGADO";
-            }
-            if (arr[2] == 0)
-            {
-                tbLEDGreen.BackColor = Color.Red;
-                tbLEDGreen.Text = "DESLIGADO";
-            }
-            if (arr[2] == 1)
-            {
-                tbLEDGreen.BackColor = Color.Green;
-                tbLEDGreen.Text = "LIGADO";
+
             }
 
         }
@@ -217,46 +263,7 @@ namespace GRSIArduinoControl
         {
             //tbLEDRed.Clear();
 
-            if(inData == 0)
-            {
-                switch (flagLED)
-                {
-                    case "red":
-                        tbLEDRed.BackColor = Color.Red;
-                        tbLEDRed.Text = "DESLIGADO";
-                        break;
-                    case "yellow":
-                        tbLEDYellow.BackColor = Color.Red;
-                        tbLEDYellow.Text = "DESLIGADO";
-                        break;
-                    case "green":
-                        tbLEDGreen.BackColor = Color.Red;
-                        tbLEDGreen.Text = "DESLIGADO";
-                        break;
-                }
-
-            }
-            if(inData == 1)
-            {
-                switch (flagLED)
-                {
-                    case "red":
-                        tbLEDRed.BackColor = Color.Green;
-                        tbLEDRed.Text = "LIGADO";
-                        break;
-                    case "yellow":
-                        tbLEDYellow.BackColor = Color.Green;
-                        tbLEDYellow.Text = "LIGADO";
-                        break;
-                    case "green":
-                        tbLEDGreen.BackColor = Color.Green;
-                        tbLEDGreen.Text = "LIGADO";
-                        break;
-                }
-                
-            }
-
-            flagLED = "";
+            
              
         }
 
@@ -347,6 +354,11 @@ namespace GRSIArduinoControl
         {
             flagLED = "green";
             port.Write("E");
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

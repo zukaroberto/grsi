@@ -46,8 +46,11 @@ namespace GRSIArduinoControl
             this.btnOFFGreen = new System.Windows.Forms.Button();
             this.btnONGreen = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbDados = new System.Windows.Forms.TextBox();
+            this.tbPres = new System.Windows.Forms.TextBox();
             this.tbLEDGreen = new System.Windows.Forms.TextBox();
+            this.tbTemp = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbCOM
@@ -118,9 +121,9 @@ namespace GRSIArduinoControl
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(84, 433);
+            this.btnSair.Location = new System.Drawing.Point(180, 425);
             this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(75, 23);
+            this.btnSair.Size = new System.Drawing.Size(65, 23);
             this.btnSair.TabIndex = 7;
             this.btnSair.Text = "SAIR";
             this.btnSair.UseVisualStyleBackColor = true;
@@ -213,12 +216,13 @@ namespace GRSIArduinoControl
             this.label4.TabIndex = 15;
             this.label4.Text = "LED Verde";
             // 
-            // tbDados
+            // tbPres
             // 
-            this.tbDados.Location = new System.Drawing.Point(288, 117);
-            this.tbDados.Name = "tbDados";
-            this.tbDados.Size = new System.Drawing.Size(100, 23);
-            this.tbDados.TabIndex = 18;
+            this.tbPres.Location = new System.Drawing.Point(262, 158);
+            this.tbPres.Name = "tbPres";
+            this.tbPres.Size = new System.Drawing.Size(143, 23);
+            this.tbPres.TabIndex = 18;
+            this.tbPres.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbLEDGreen
             // 
@@ -229,13 +233,43 @@ namespace GRSIArduinoControl
             this.tbLEDGreen.TabIndex = 19;
             this.tbLEDGreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // tbTemp
+            // 
+            this.tbTemp.Location = new System.Drawing.Point(262, 94);
+            this.tbTemp.Name = "tbTemp";
+            this.tbTemp.Size = new System.Drawing.Size(143, 23);
+            this.tbTemp.TabIndex = 20;
+            this.tbTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(262, 76);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 15);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Temperatura (ºC)";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(262, 140);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(145, 15);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Pressão Atmosférica (hPa)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 486);
+            this.ClientSize = new System.Drawing.Size(479, 486);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbTemp);
             this.Controls.Add(this.tbLEDGreen);
-            this.Controls.Add(this.tbDados);
+            this.Controls.Add(this.tbPres);
             this.Controls.Add(this.btnOFFGreen);
             this.Controls.Add(this.btnONGreen);
             this.Controls.Add(this.label4);
@@ -279,8 +313,11 @@ namespace GRSIArduinoControl
         private System.Windows.Forms.Button btnOFFGreen;
         private System.Windows.Forms.Button btnONGreen;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbDados;
+        private System.Windows.Forms.TextBox tbPres;
         private System.Windows.Forms.TextBox tbLEDGreen;
+        private System.Windows.Forms.TextBox tbTemp;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 
