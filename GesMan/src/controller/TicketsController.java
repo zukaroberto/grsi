@@ -1,2 +1,4 @@
-package controller;public class TicketsController {
+package controller;
+
+public class TicketsController {
 }
